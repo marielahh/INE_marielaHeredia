@@ -9,9 +9,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -21,13 +23,14 @@ public class Usuarios extends AppCompatActivity {
 
     EditText nom,ape,doc,usu,con;
     Button guardar, modificar;
-    String nom1,ape1,doc1,usu1,con1,tipo;
+    String nom1,ape1,doc1,usu1,con1;
+    Spinner tip;
     private TableLayout tabla;
     private TableRow fila;
     TableRow.LayoutParams layoutFila;
     private SQLiteDatabase db;
     private Context context;
-
+    String[] opciones;
     int idmod;
 
     @Override
@@ -41,6 +44,11 @@ public class Usuarios extends AppCompatActivity {
         doc=(EditText)findViewById(R.id.ci);
         usu=(EditText)findViewById(R.id.user);
         con=(EditText)findViewById(R.id.pass);
+        tip=(Spinner)findViewById(R.id.spRol);
+
+        opciones=new String[]{"Seleccionar","Administrador","Cliente"};
+        ArrayAdapter<String> adaptador = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, opciones);
+        tip.setAdapter(adaptador);
         guardar=(Button)findViewById(R.id.btnguardar);
         modificar=(Button)findViewById(R.id.btnmodificar);
 
@@ -49,17 +57,16 @@ public class Usuarios extends AppCompatActivity {
 
         guardar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //int tipo = tip.getSelectedItemPosition();
+                int tipo = tip.getSelectedItemPosition();
                 nom1 = nom.getText().toString().trim();
                 ape1 = ape.getText().toString().trim();
                 doc1 = doc.getText().toString().trim();
                 usu1 = usu.getText().toString().trim();
                 con1 = con.getText().toString().trim();
-                tipo = "2";
 
                 Base_datos base = new Base_datos(context);
                 String[] variables = {"nombres", "apellidos", "nrodocumento", "usuario", "contrasena", "rol"};
-                String[] valores = {nom1, ape1, doc1, usu1, con1, tipo};
+                String[] valores = {nom1, ape1, doc1, usu1, con1, String.valueOf(tipo)};
                 base.insert("cliente",variables,valores);
                 base.close();
                 Toast.makeText(getApplicationContext(), "Registro agregado.", Toast.LENGTH_SHORT).show();
@@ -68,7 +75,7 @@ public class Usuarios extends AppCompatActivity {
         });
         modificar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //int tipo = tip.getSelectedItemPosition();
+                int tipo = tip.getSelectedItemPosition();
                 nom1 = nom.getText().toString().trim();
                 ape1 = ape.getText().toString().trim();
                 doc1 = doc.getText().toString().trim();
@@ -82,7 +89,7 @@ public class Usuarios extends AppCompatActivity {
                 values.put("nrodocumento", doc1);
                 values.put("usuario", usu1);
                 values.put("contrasena", con1);
-                values.put("rol", "2");
+                values.put("rol", tipo);
                 String[] args=new String[]{""+idmod};
                 db.update("cliente", values, "_id =?", args);
                 base.close();
@@ -134,7 +141,6 @@ public class Usuarios extends AppCompatActivity {
             rolclie.setBackgroundResource(R.drawable.celda_cabecera);
         }
 
-
         nombreclie.setLayoutParams(new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 5));
         apeclie.setLayoutParams(new TableRow.LayoutParams(0,TableRow.LayoutParams.MATCH_PARENT, 5));
         docclie.setLayoutParams(new TableRow.LayoutParams(0,TableRow.LayoutParams.MATCH_PARENT, 4));
@@ -144,7 +150,6 @@ public class Usuarios extends AppCompatActivity {
         fila.addView(apeclie);
         fila.addView(docclie);
         fila.addView(rolclie);
-
 
         if(id.compareTo("0")!=0)
         {
@@ -168,7 +173,7 @@ public class Usuarios extends AppCompatActivity {
                         doc.setText(cliente_mod.getString(3));
                         usu.setText(cliente_mod.getString(4));
                         con.setText(cliente_mod.getString(5));
-                        //tip.setSelection(Integer.valueOf(cliente_mod.getString(6)));
+                        tip.setSelection(Integer.valueOf(cliente_mod.getString(6)));
 
                         guardar.setVisibility(View.GONE);
                         modificar.setVisibility(View.VISIBLE);

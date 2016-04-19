@@ -28,7 +28,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:weightSum="1"
-            android:gravity="left">
+            android:gravity="left"
+            android:foregroundGravity="left">
 
             <ImageView
                 android:layout_width="99dp"
@@ -52,7 +53,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:weightSum="1"
-            android:gravity="left">
+            android:gravity="left"
+            android:foregroundGravity="left">
 
             <ImageView
                 android:layout_width="85dp"
@@ -77,7 +79,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:weightSum="1"
-            android:gravity="left">
+            android:gravity="left"
+            android:foregroundGravity="left">
 
             <ImageView
                 android:layout_width="100dp"
@@ -106,15 +109,5 @@
         android:id="@+id/txtUserL"
         android:layout_alignTop="@+id/linearLayout2"
         android:layout_alignParentEnd="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cerrar Sesion"
-        android:id="@+id/button"
-        android:onClick="cerrarsesion"
-        android:layout_below="@+id/linearLayout2"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="49dp" />
 
 </RelativeLayout>

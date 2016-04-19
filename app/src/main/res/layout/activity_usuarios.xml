@@ -71,6 +71,12 @@
                     android:id="@+id/pass"
                     android:hint="@string/contraseña" />
 
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/spRol"
+                    android:layout_gravity="center_horizontal" />
+
             </LinearLayout>
         </LinearLayout>
 
@@ -78,7 +84,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Guardar"
-            android:id="@+id/button2"
+            android:id="@+id/btnguardar"
             android:background="#458dda"
             android:textColor="#ffffff"
             android:layout_gravity="center_horizontal" />
@@ -87,7 +93,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Modificar"
-            android:id="@+id/button3"
+            android:id="@+id/btnmodificar"
             android:background="#458dda"
             android:textColor="#ffffff"
             android:layout_gravity="center_horizontal"

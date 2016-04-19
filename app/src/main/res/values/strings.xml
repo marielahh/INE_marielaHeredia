@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Carrito de Compra</string>
+    <string name="title_activity_menu_principal">Menu Principal</string>
+    <string name="usuario">Usuario</string>
+    <string name="contraseña">Contraseña</string>
+    <string name="nombreProducto">Nombre Producto</string>
+    <string name="precioProducto">Precio Producto</string>
+    <string name="cantidadProducto">Cantidad Producto</string>
+    <string name="listadoProductos">Listado Productos</string>
+    <string name="nombreUsuario">Nombres</string>
+    <string name="apellidoUsuario">Apellidos</string>
+    <string name="ciUsuario">Carnet de Identidad</string>
+    <string name="listadoUsuarios">Listado Usuarios</string>
+
+</resources>
